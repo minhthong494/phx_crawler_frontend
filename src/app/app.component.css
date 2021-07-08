@@ -1,0 +1,9 @@
+.sr-only {
+    display: none;
+}
+
+.fixed-footer {
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 5;
+}

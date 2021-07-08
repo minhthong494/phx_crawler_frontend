@@ -1,0 +1,13 @@
+.thumnail {
+    max-width: auto;
+    max-height: auto;
+    max-height: 40px;
+}
+
+span .sr-only {
+    display: none !important;
+}
+
+.page-link > span {
+    display: none !important;
+}

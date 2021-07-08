@@ -1,0 +1,8 @@
+<div class="h-100">
+    <app-show-movie [movies]="movies" (onYearFilter)="onYearFilter($event)" (onCompleteStatusFilter)="onCompleteStatusFilter($event)"></app-show-movie>
+</div>
+<div class="container">
+    <div class="row justify-content-center fix">
+        <div class="col-6"><ngb-pagination [collectionSize]="totalItems" [pageSize]="pageSize " (pageChange)="onPageChange($event)" [boundaryLinks]="true"></ngb-pagination></div>
+    </div>
+</div>

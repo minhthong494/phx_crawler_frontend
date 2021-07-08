@@ -1,0 +1,44 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Thumnail</th>
+        <th scope="col">Title</th>
+        <th scope="col">
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn" id="dropdownBasic1" ngbDropdownToggle>Year</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem (click)="onYearFilter(-1)">All</button>
+              <button ngbDropdownItem *ngFor="let year of listYears" (click)="onYearFilter(year)">{{year}}</button>
+            </div>
+          </div>
+        </th>
+        <th scope="col">
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn" id="dropdownBasic1" ngbDropdownToggle>Complete</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem (click)="onCompleteStatusFilter(-1)">Both</button>
+              <button ngbDropdownItem (click)="onCompleteStatusFilter(1)">Complete</button>
+              <button ngbDropdownItem (click)="onCompleteStatusFilter(0)">Incomplete</button>
+            </div>
+          </div>
+        </th>
+        <th scope="col">Episodes</th>
+        <th scope="col">Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let mv of movies; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td><img class="thumnail" [src]="mv.thumnail"></td>
+        <td>{{mv.title}}</td>
+        <td class="text-center">{{mv.year}}</td>
+        <td class="text-center">
+          <fa-icon [icon]="faCheckSquare" *ngIf="mv.full_series"></fa-icon>
+          <fa-icon [icon]="faTimes" *ngIf="!mv.full_series"></fa-icon>
+        </td>
+        <td class="text-center">{{mv.number_of_episode}}</td>
+        <td>{{mv.link}}</td>
+      </tr>
+    </tbody>
+  </table>
