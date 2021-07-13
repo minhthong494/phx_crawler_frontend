@@ -22,6 +22,8 @@ export class CrawlLogDetailComponent implements OnInit, OnChanges {
   movies: Movie[] = [];
   yearFilter = -1;
   isCompleteFilter = -1;
+  directorFilter = -1;
+  countryFilter = -1;
   ngOnInit(): void {
   }
 
@@ -43,6 +45,12 @@ export class CrawlLogDetailComponent implements OnInit, OnChanges {
     }
     if (this.isCompleteFilter !== -1) {
       Object.assign(params, {is_complete: this.isCompleteFilter});
+    }
+    if (this.directorFilter !== -1) {
+      Object.assign(params, {director_id: this.directorFilter});
+    }
+    if (this.countryFilter !== -1) {
+      Object.assign(params, {country_id: this.countryFilter});
     }
 
     this.apiService.getCrawlMoviesByLogId(this.log_id, params).subscribe(
@@ -71,6 +79,18 @@ export class CrawlLogDetailComponent implements OnInit, OnChanges {
   onCompleteStatusFilter(isComplete: number) {
     this.page = 1;
     this.isCompleteFilter = isComplete;
+    this.fetchCrawLogDetail();
+  }
+
+  onDirectorFilter(id: number) {
+    this.page = 1;
+    this.directorFilter = id;
+    this.fetchCrawLogDetail();
+  }
+
+  onCountryFilter(id: number) {
+    this.page = 1;
+    this.countryFilter = id;
     this.fetchCrawLogDetail();
   }
 }

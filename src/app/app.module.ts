@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CrawlLogDetailComponent } from './crawl-log/crawl-log-detail/crawl-log-detail.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { Array2textPipe } from './array2text.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HomeComponent,
     ShowMovieComponent,
     CrawlLogComponent,
-    CrawlLogDetailComponent
+    CrawlLogDetailComponent,
+    Array2textPipe
   ],
   imports: [
     BrowserModule,

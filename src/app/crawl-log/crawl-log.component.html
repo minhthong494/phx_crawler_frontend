@@ -1,8 +1,8 @@
-<div class="container" [ngStyle]="{'display': !isPageListing ? 'none' : 'block'}">
-<div class="my-3">
-  <h3>Crawl history</h3>
-</div>
-<table class="table">
+<div class="container" [ngStyle]="{'display': !isPageListing ? 'none' : 'block'}" style="">
+  <div class="my-3">
+    <h3>Crawl history</h3>
+  </div>
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -19,18 +19,24 @@
         <td>{{log.url}}</td>
         <td class="text-center">{{log.total}}</td>
         <td>{{log.crawl_at_display | date:'short'}}</td>
-        <td class="text-center text-success">{{log.status === 'success' ? 'Success' : 'Failed'}}</td>
-        <td class="text-center"><a class="btn btn-primary" (click)="onClickDetail(log); setPageDetail();">Detail</a></td>
+        <td class="text-center text-success">
+          <p class="text-success" *ngIf="log.status === 'success'">Success</p>
+          <p class="text-danger" *ngIf="log.status === 'failed'">Failed</p>
+          <p class="text-warning" *ngIf="log.status === 'pending'">Pending</p>
+        </td>
+        <td class="text-center"><a class="btn btn-primary" (click)="onClickDetail(log); setPageDetail();">Detail</a>
+        </td>
       </tr>
     </tbody>
   </table>
 
-  <div class="row justify-content-center fixed-footer">
+  <div class="row justify-content-center fixed-footer" style="">
     <div class="col-6">
-      <ngb-pagination [collectionSize]="totalItems" [pageSize]="pageSize " (pageChange)="onPageChange($event)" [boundaryLinks]="true"></ngb-pagination>
+      <ngb-pagination [maxSize]="pageSize" [collectionSize]="totalItems" [pageSize]="pageSize "
+        (pageChange)="onPageChange($event)" [boundaryLinks]="true"></ngb-pagination>
     </div>
   </div>
-  
+
 </div>
 
 <div class="container" [ngStyle]="{'display': isPageListing ? 'none' : 'block'}">
@@ -42,5 +48,5 @@
       <a class="btn btn-primary" (click)="onExport()">Export</a>
     </div>
   </div>
-    <app-crawl-log-detail [crawlLogID]="crawlLogDetailID"></app-crawl-log-detail>
+  <app-crawl-log-detail [crawlLogID]="crawlLogDetailID"></app-crawl-log-detail>
 </div>

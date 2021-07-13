@@ -18,6 +18,18 @@ export class Movie {
     full_series: boolean = false;
     number_of_episode: number = 0;
     year = 0;
+    directors: Director[] = [];
+    countries: Country[] = [];
     constructor(
     ) { }
+}
+
+export class Country {
+    id = 0;
+    name = '';
+}
+
+export class Director {
+    id = 0;
+    name = '';
 }

@@ -29,7 +29,7 @@ export class ApiService {
     return `${this.baseURL}history/${id}`;
   }
 
-  uploadCrawlLink(url: string) {
+  uploadLink(url: string) {
     const body = {
       form_data: {
         url: url
@@ -38,12 +38,9 @@ export class ApiService {
     return this.httpClient.post(this.baseURL, body, {responseType: 'json', observe: 'response'});
   }
 
-  uploadCrawlFile(url: string) {
-    const body = {
-      form_data: {
-        url: url
-      }
-    }
-    return this.httpClient.post(this.baseURL, body, {responseType: 'json', observe: 'response'});
+  uploadFile(file: File) {
+    const formData: FormData = new FormData();
+    formData.append('file', file, file.name);
+    return this.httpClient.post(this.baseURL, formData, {responseType: 'json', observe: 'response'});
   }
 }

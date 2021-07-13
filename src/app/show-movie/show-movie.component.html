@@ -24,6 +24,24 @@
           </div>
         </th>
         <th scope="col">Episodes</th>
+        <th scope="col">
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn" id="dropdownBasic1" ngbDropdownToggle>Directors</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem (click)="onDirectorFilter(-1)">All</button>
+              <button ngbDropdownItem *ngFor="let director of listDirectors" (click)="onDirectorFilter(director.id)">{{director.name}}</button>
+            </div>
+          </div>
+        </th>
+        <th scope="col">
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn" id="dropdownBasic1" ngbDropdownToggle>Countries</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem (click)="onCountryFilter(-1)">All</button>
+              <button ngbDropdownItem *ngFor="let country of listCountries" (click)="onCountryFilter(country.id)">{{country.name}}</button>
+            </div>
+          </div>
+        </th>
         <th scope="col">Link</th>
       </tr>
     </thead>
@@ -38,7 +56,9 @@
           <fa-icon [icon]="faTimes" *ngIf="!mv.full_series"></fa-icon>
         </td>
         <td class="text-center">{{mv.number_of_episode}}</td>
-        <td>{{mv.link}}</td>
+        <td class="text-center">{{mv.directors | array2text}}</td>
+        <td class="text-center">{{mv.countries | array2text}}</td>
+        <td><a target="_blank" [href]="mv.link" class="btn btn-primary">Watch</a></td>
       </tr>
     </tbody>
   </table>

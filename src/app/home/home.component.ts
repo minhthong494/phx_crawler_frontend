@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
 
   isUpload = false;
   crawlLink = '';
+  uploadFile: File | null = null;
   ngOnInit(): void {
   }
 
@@ -22,9 +23,29 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit() {
-    this.apiService.uploadCrawlLink(this.crawlLink).subscribe(
+    this.apiService.uploadLink(this.crawlLink).subscribe(
       (res) => console.log('upload sucess'),
       (err) => console.log('upload failed')
+    );
+  }
+
+  onChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (!input.files?.length) {
+      return;
+     }
+    this.uploadFile = input.files[0];
+  }
+
+  onUploadFile() {
+    if (!this.uploadFile) {
+      return;
+    }
+    this.apiService.uploadFile(this.uploadFile).subscribe(
+      (res) => {
+        (document.getElementById('formFile') as HTMLInputElement).value = '';
+      },
+      (err) => {}
     );
   }
 }
